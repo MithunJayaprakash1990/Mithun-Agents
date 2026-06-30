@@ -1,0 +1,83 @@
+
+
+
+/**************
+    CSS
+    ******/
+<style>
+    .Stars {
+        --percent: calc(var(--rating) / 5 * 100%);
+        display: inline-block;
+        font-size: var(--star-size);
+        font-family: Times;
+        line-height: 1;
+
+        &::before {
+            content: '★★★★★';
+            background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }    
+    
+    body {
+    --star-size: 25px;
+  --star-color: #BCBCBC;
+  --star-background: #FFB501;
+    }
+    .starContainer {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+    /**************
+    JS
+    ***************/
+
+    ************ With API *********************
+<script>
+    for (let i = 0; i < products.validProducts.length; i++) {
+        const product = products.validProducts[i];
+        if (product.marketingStatus != "Available")
+            delete q15443HPRecsObject[product.productNumber];
+        else {
+            q15443HPRecsObject[product.productNumber]['discountPercentage'] = product.priceInfo.\$price.discountPercentage;
+            q15443HPRecsObject[product.productNumber]['formatDiscountMoney'] = product.priceInfo.\$price.formatDiscountMoney;
+            q15443HPRecsObject[product.productNumber]['saleValue'] = product.priceInfo.\$price.formatPrice;
+            q15443HPRecsObject[product.productNumber]['ECoupon'] = (product.priceInfo.coupon.couponCode && product.priceInfo.coupon.couponCode != -1) ? product.priceInfo.coupon.couponCode : "";
+
+            q15443HPRecsObject[product.productNumber]['rating'] = product.reviewData.averageOverallRating; /********/
+
+        }
+    }
+
+
+    ****************With Recs ***************************
+    Object.assign(HPRecsTab3RecsObject, {
+        "$pid": {
+            "id": "$pid",
+            "subseriesID": "$e.subseriesID",
+            "name": "$e.name",
+            "message": "$e.message",
+            "pageUrl": "$e.pageUrl",
+            "saleValue": "$e.saleValue",
+            "thumbnailUrl": "$e.thumbnailUrl",
+            "listValue": "$e.listValue",
+            "count": "$count",
+            "rating": "$e.ratingAverage"    /********/
+        }
+    }) +
+
+    /**************
+    Html
+    ***************/
+
+
+    ' <div class="starContainer"><div class="Stars" style="--rating: '+ recsObject[ob].rating  +';" aria-label="Rating of this product is '+recsObject[ob].rating+' out of 5."></div></div>' +
+
+    /********** Remove bv.js related code every where *******/
+
+    /************** Reference JIRA UEXP-14727 *************/
+
+    </script>
