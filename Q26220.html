@@ -1,0 +1,211 @@
+<style>
+    .Q26220SubseriesViewingCount,
+    .Q26220ViewingCount {
+        text-align: left;
+        font: normal normal normal 13px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+    .Q26220SubseriesViewingCount {
+        padding: 10px 0;
+        display: block;
+    }
+
+    .Q26220SubseriesViewingCount .icon,
+    .Q26220ViewingCount .icon {
+        background-image: url("https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a.7213bf4ee1b38e25.svg");
+        display: inline-block;
+        height: 19px;
+        width: 23px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .Q26220SubseriesViewingCount b,
+    .Q26220ViewingCount b {
+        text-align: left;
+        font: normal normal bold 13px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+
+    .gaming-theme-black .Q26220SubseriesViewingCount,
+    .gaming-theme-black .Q26220ViewingCount,
+    .gaming-theme-black .Q26220SubseriesViewingCount b,
+    .gaming-theme-black .Q26220ViewingCount b {
+        color: #ffffff;
+    }
+
+    .gaming-theme-black .Q26220SubseriesViewingCount .icon,
+    .gaming-theme-black .Q26220ViewingCount .icon {
+        background-image: url('https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a_white.57055183652e7456.svg');
+    }
+
+    .Q26220SubseriesViewingCount {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+</style>
+<script>
+
+    let Q26220Data;
+    let Q26220ExpCalled = false;
+
+
+
+    async function Q26220getAllCounts(productcodeimpressions) {
+        try {
+            productcodeimpressions = productcodeimpressions.split(',');
+            productcodeimpressions = productcodeimpressions.map((productcodeimpression) => {
+                return productcodeimpression + ":" + AT_getMeta().country
+            });
+            productcodeimpressions = productcodeimpressions.join(",");
+            const results = await $.ajax({ url: "https://www.lenovo.com/ssp/" + productcodeimpressions });
+            return results;
+        } catch (error) {
+            console.log("ERROR_Q26220getAllCounts", error.message);
+        }
+    }
+
+    function Q26220MapResults(results) {
+        try {
+            const data = {};
+            let totalOneDayCount = 0;
+            let totalOneWeekCartAddition = 0;
+
+            for (let i = 0; i < results.length; i++) {
+                data[results[i]['dynamoid']] = results[i];
+                totalOneDayCount = totalOneDayCount + (results[i]['v_1d'] * 1);
+                totalOneWeekCartAddition = totalOneWeekCartAddition + (results[i]['ca_7d'] * 1);
+            }
+            return {
+                data,
+                totalOneDayCount: totalOneDayCount < 100 ? "" : ((totalOneDayCount > 1000 ? "1000+" : totalOneDayCount)),
+                totalOneWeekCartAddition: totalOneWeekCartAddition < 20 ? "" : ((totalOneWeekCartAddition > 100 ? "100+" : totalOneWeekCartAddition)),
+            }
+        } catch (error) {
+            console.log("ERROR_Q26220MapResults", error.message);
+        }
+    }
+
+    Q26220_addToCartNBuildNowCTAClick = function () {
+        try {
+            let ctaButtons = $(".cta-button.mtm,.cta-button.cto");
+            if (!$(ctaButtons).length) {
+                ctaButtons = $(".cta_btns .product_cta_button");
+            }
+            const pId = AT_getMeta().pId
+            for (let i = 0; i < ctaButtons.length; i++) {
+                let productode = ""
+                const ctaButton = ctaButtons[i];
+                if ($(ctaButton).parents('li.product_item').attr('data-adobe-params')) {
+                    const data = JSON.parse($(ctaButton).parents('li.product_item').attr('data-adobe-params'));
+                    productode = data.productNubmer;
+                } else if (pId) {
+                    productode = pId;
+                }
+                if ($(ctaButton).hasClass("cto")) {
+                    AT_ClickTracking("Q26220", "${campaign.recipe.name}", "'Build Your PC CTA Clicked for product: " + productCode);
+                } else if ($(ctaButton).hasClass("mtm")) {
+                    AT_ClickTracking("Q26220", "${campaign.recipe.name}", "Add To Cart CTA Clicked for product: " + productCode);
+                } else {
+                    AT_ClickTracking("Q26220", "${campaign.recipe.name}", "Add To Cart CTA Clicked for product: " + productCode);
+                }
+            }
+        } catch (error) {
+            console.log("ERROR_AddToCartNBuildNowCTAClick", error.message);
+        }
+    }
+
+
+    function q26220GetLanguage(count) {
+        try {
+
+            count = "<b>" + count + "</b>"
+            const language = {
+                "jp": {
+                    "ja": {
+                        "MSG2": `直近` + count + `個カートに入れられました`
+                    }
+                },
+            }
+            return language[AT_getMeta().country][AT_getMeta().language]
+        } catch (error) {
+            console.log("ERROR_getLanguage", error.message);
+        }
+    }
+
+    async function loadExperience(recName) {
+        try {
+            let results;
+            if (!Q26220Data) {
+                var productcodeimpressions = AT_getMeta().pIds;
+                if (!productcodeimpressions) {
+                    productcodeimpressions = AT_getMeta().pId;
+                }
+
+                results = await Q26220getAllCounts(productcodeimpressions);
+                results = Q26220MapResults(results);
+                Q26220Data = results;
+            } else {
+                results = Q26220Data;
+            }
+            if (Q26220ExpCalled === false && results.totalOneDayCount) {
+                try {
+                    if (!window.Q26220_prop17LoadFired) {
+                        const message = " Loaded";
+                        AT_prop17Tracking(recName, message);
+                        window.Q26220_prop17LoadFired = true;
+                    }
+                } catch (error) {
+                    console.log("Q26220 Prop17 Load Error", error.message);
+                }
+                Q26220ExpCalled = true;
+            }
+
+            let resultKeys = Object.keys(results.data);
+            // Q26220_addToCartNBuildNowCTAClick();
+
+            if ((!$(".Q26220SubseriesViewingCount").length)) {
+
+                if ($(".banner_content_desc .rating-container").length && results.totalOneWeekCartAddition) {
+                    $(".banner_content_desc .rating-container").after("<span class='Q26220SubseriesViewingCount'><span class='icon'></span>" + q26220GetLanguage(results.totalOneWeekCartAddition).MSG2 + "</span>");
+                } else if ($(".fps_review_container").length && results.totalOneWeekCartAddition) {
+                    $(".fps_review_container").after("<span class='Q26220SubseriesViewingCount'><span class='icon'></span>" + q26220GetLanguage(results.totalOneWeekCartAddition).MSG2 + "</span>");
+                } else if ($(".product-details .card-rating-container").length && results.totalOneWeekCartAddition) {
+                    $(".product-details .card-rating-container").after("<span class='Q26220SubseriesViewingCount'><span class='icon'></span>" + q26220GetLanguage(results.totalOneWeekCartAddition).MSG2 + "</span>");
+                }
+            }
+            Q26220_addToCartNBuildNowCTAClick();
+
+        } catch (error) {
+            console.log("ERROR_" + recName, error.message);
+        }
+    }
+
+    try {
+        document.addEventListener("Q26220containerFound", function (event) {
+            $('body').addClass('${campaign.recipe.name}');
+            $('body').addClass('Q26220');
+            const recName = '${campaign.recipe.name}';
+            $('body').addClass(recName);
+            loadExperience(recName);
+            const pageType = AT_getMeta().pagetype;
+            if (pageType === "MODEL") {
+                Q26220_addToCartNBuildNowCTAClick();
+            }
+        });
+
+        AT_EW.watch(".hero-container ", false, "Q26220containerFound");
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+
+    //# sourceURL=Q26220.js
+</script>

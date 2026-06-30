@@ -1,0 +1,568 @@
+<style>
+    .q25334SVC,
+    .Q25334ViewingCount {
+        text-align: left;
+        font: normal normal normal 13px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+    .q25334SVC {
+        padding: 10px 0;
+        display: flex;
+        gap: 0px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    @media (max-width: 1716px) {
+        .q25334SVC {
+            font-size: 12px !important;
+        }
+    }
+
+    @media (max-width: 1641px) {
+        .q25334SVC {
+            font-size: 11px !important;
+        }
+    }
+
+    .q25334SVC.Subseries.Q25334ExpAIcon {
+        padding: 10px 0;
+        display: flex;
+        gap: 3px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .dlp_groups .dlp-product-card span.q25334SVC {
+        padding: 0px;
+    }
+
+    .q25334SVC .icon,
+    .Q25334ViewingCount .icon {
+        display: inline-block;
+        width: 21px;
+        height: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: 5px;
+    }
+
+    .q25334SVC b,
+    .Q25334ViewingCount b {
+        text-align: left;
+        font: normal normal bold 12px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+    .gaming-theme-black .q25334SVC,
+    .gaming-theme-black .Q25334ViewingCount,
+    .gaming-theme-black .q25334SVC b,
+    .gaming-theme-black .Q25334ViewingCount b {
+        color: #ffffff;
+    }
+
+    .gaming-theme-black .q25334SVC .icon,
+    .gaming-theme-black .Q25334ViewingCount .icon {
+        background-image: url('https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a_white.57055183652e7456.svg');
+    }
+
+    @media only screen and (max-width: 767px) {
+        .q25334SVC {
+            padding-left: 0px;
+            text-align: left;
+        }
+
+        .feature_product .q25334SVC {
+            text-align: center !important;
+        }
+
+        .product-info .q25334SVC {
+            padding-left: 0px;
+        }
+
+        .single_model_PDP_container .q25334SVC.SKU {
+            padding-left: 16px;
+        }
+    }
+
+    .q25334SVC.SKU {
+        text-align: left !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .Q25334ExpA .fps_review_container .q25334SVC.Subseries {
+        display: flex;
+        align-items: center;
+    }
+
+    .q25334SVC.Subseries {
+        text-align: left !important;
+    }
+
+    .q25334SVC.Subseries>span.icon,
+    .q25334SVC.SKU>span.icon {
+        margin: 0px;
+    }
+
+    .Q25334ExpAIcon>span.icon {
+        background-image: url("https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a.7213bf4ee1b38e25.svg");
+        margin: -5px !important;
+    }
+
+    .Q25334SubseriesViewingCount,
+    .Q25334ViewingCount {
+        text-align: left;
+        font: normal normal normal 13px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+    .Q25334SubseriesViewingCount {
+        display: flex;
+        align-items: center;
+    }
+
+    .Q25334SubseriesViewingCount .icon,
+    .Q25334ViewingCount .icon {
+        background-image: url("https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a.7213bf4ee1b38e25.svg");
+        display: inline-block;
+        height: 17px;
+        width: 17px;
+        margin-right: 5px;
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .Q25334SubseriesViewingCount b,
+    .Q25334ViewingCount b {
+        text-align: left;
+        font: normal normal bold 12px/16px Lato;
+        letter-spacing: 0px;
+        color: #912593;
+    }
+
+
+    .gaming-theme-black .Q25334SubseriesViewingCount,
+    .gaming-theme-black .Q25334ViewingCount,
+    .gaming-theme-black .Q25334SubseriesViewingCount b,
+    .gaming-theme-black .Q25334ViewingCount b {
+        color: #ffffff;
+    }
+
+    .gaming-theme-black .Q25334SubseriesViewingCount .icon,
+    .gaming-theme-black .Q25334ViewingCount .icon {
+        background-image: url('https://p1-ofp.static.pub/ShareResource/ww/opt/site_wide/a_white.57055183652e7456.svg');
+    }
+
+    .single_model_PDP_container .fps_review_container {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .Q25334ExpAIconHide .icon {
+        display: none;
+    }
+
+    .Q25334ExpA-subseries .q25334SVC {
+        align-items: anchor-center;
+    }
+
+    .Q25334ExpA-deals .q25334SVC,
+    .Q25334ExpA-deals .Q25334ViewingCount,
+    .Q25334ExpA-deals .Q25334SubseriesViewingCount,
+    .Q25334ExpA-deals .Q25334ViewingCount {
+        font: normal normal normal 12px/16px Lato;
+    }
+
+    .Q25334ExpA-deals .q25334SVC .icon,
+    .Q25334ExpA-deals .Q25334ViewingCount .icon {
+        width: 17px;
+        height: 21px;
+    }
+</style>
+<script>
+    let q25334ExpCalled = false;
+    let q25334Threshold = 100;
+
+    async function q25334getAllCounts(pIds) {
+        try {
+            pIds = pIds.split(',');
+            pIds = pIds.map((productcodeimpression) => {
+                if (productcodeimpression) {
+                    return productcodeimpression + ":" + AT_getMeta().country
+                }
+            });
+
+            pIds = (pIds.join(",")).replace(/(^,)|(,$)/g, "");
+            const results = await $.ajax({ url: "https://www.lenovo.com/ssp/" + pIds });
+            return results;
+        } catch (error) {
+            console.log("ERROR_q25334getAllCounts", error.message);
+        }
+    }
+
+    async function Q25334CartGetAllCounts(productcodeimpressions) {
+        try {
+            productcodeimpressions = productcodeimpressions.split(',');
+            productcodeimpressions = productcodeimpressions.map((productcodeimpression) => {
+                return productcodeimpression + ":" + AT_getMeta().country.toLowerCase()
+            });
+            productcodeimpressions = productcodeimpressions.join(",");
+            const results = await $.ajax({ url: "https://www.lenovo.com/ssp/" + productcodeimpressions });
+            return results;
+        }
+        catch (error) {
+            console.log("Error_Q25334CartGetAllCounts", error.message)
+        }
+    }
+
+    function q25334GetRangeInd(number) {
+        try {
+            const lowerBound = Math.floor(number / 100) * 100;
+            return lowerBound + '+';
+        }
+        catch (error) {
+            console.log("Error_q25334GetRangeInd", error.message)
+        }
+
+    }
+
+    function Q25334MapResults(results, recName) {
+        try {
+            const data = {};
+            let totalOneDayCount = 0;
+            let totalOneWeekCartAddition = 0;
+
+            for (let i = 0; i < results.length; i++) {
+
+                const pId = results[i]['dynamoid'].replace(":" + AT_getMeta().country.toUpperCase(), '');
+
+                data[pId] = results[i];
+
+                const ca_7d = results[i]['ca_7d'] ? (results[i]['ca_7d'] * 1) : 0;
+
+                data[pId]['totalOneWeekCartAddition'] = ca_7d < 20 ? "" : (ca_7d > 100 ? "100+" : ca_7d);
+
+                totalOneDayCount = totalOneDayCount + ((results[i]['v_1d'] || 0) * 1);
+                totalOneWeekCartAddition = totalOneWeekCartAddition + ca_7d;
+            }
+            return {
+                data,
+                totalOneDayCount: totalOneDayCount < 100 ? "" : (totalOneDayCount > 1000 ? "1000+" : totalOneDayCount),
+                totalOneWeekCartAddition: totalOneWeekCartAddition < 20 ? "" : (totalOneWeekCartAddition > 100 ? "100+" : totalOneWeekCartAddition),
+            };
+
+        } catch (error) {
+            console.log("ERROR_Q25334MapResults", error.message);
+        }
+    }
+
+    function q25334DlpNSubseriesCtaTracking() {
+        try {
+            const pageType = (AT_getMeta().pagetype ? AT_getMeta().pagetype : "DLP");
+            const ctaButtons = $(".cta-button.mtm:not(.sfbtndone),.cta-button.cto:not(.sfbtndone)");
+            for (let i = 0; i < ctaButtons.length; i++) {
+                let productode = ""
+                const ctaButton = ctaButtons[i];
+                const dataObj = $(ctaButton).parents('li.product_item').attr('data-adobe-params');
+                const pCode = $(ctaButton).parents('.product_item').attr('data-product-code');
+                if (dataObj || pCode) {
+                    if (dataObj) {
+                        const data = JSON.parse(dataObj);
+                        productode = data.productNubmer;
+                    } else if (pCode) {
+                        productode = pCode
+                    }
+                    if ($(ctaButton).hasClass("cto")) {
+                        const button = document.querySelector("[data-product-code='" + productode + "'] button.cto");
+                        button.addEventListener("click", () => {
+                            AT_ClickTracking("Q25334", "${campaign.recipe.name}", pageType + ':Build Your PC CTA Clicked for product:' + productode);
+                        }, true);
+                        $(ctaButton).addClass('sfbtndone');
+                    } else if ($(ctaButton).hasClass("mtm")) {
+                        const button = document.querySelector("[data-product-code='" + productode + "'] button.mtm");
+                        button.addEventListener("click", () => {
+                            AT_ClickTracking("Q25334", "${campaign.recipe.name}", pageType + ':Add To Cart CTA Clicked for product:' + productode);
+                        });
+                        $(ctaButton).addClass('sfbtndone');
+                    }
+                    else if ($(ctaButton).hasClass("style-auto-gaming")) {
+                        const button = document.querySelector("[data-product-code='" + productode + "'] button.mtm");
+                        button.addEventListener("click", () => {
+                            AT_ClickTracking("Q25334", "${campaign.recipe.name}", pageType + ':Add To Cart CTA Clicked for product:' + productode);
+                        });
+                        $(ctaButton).addClass('sfbtndone');
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("ERROR_AddToCartNBuildNowCTAClick", error.message);
+        }
+    }
+
+    function q25334GetCopy(count) {
+        try {
+            let recName = "${campaign.recipe.name}";
+            count = "<span><b>" + count + "</b>"
+            if (recName == "Q25334ExpA") {
+                return ` Added to cart` + count + ` times recently </span>`
+            } else {
+                return count + ` gamers recently added to cart </span>`
+            }
+        } catch (error) {
+            console.log("ERROR_getLanguage", error.message);
+        }
+    }
+
+    function q25334GetCopy2(count) {
+        try {
+            let recName = "${campaign.recipe.name}";
+            count = "<span><b>" + count + "</b>";
+            if (recName == "Q25334ExpA") {
+                return ` Added to cart` + count + ` times recently </span>`;
+            } else {
+                let path=window.location.pathname
+                if(path.includes('/d/')){
+                        return count + ` gamers added to cart </span>`;
+                }
+                else{
+                    return count + ` gamers recently added to cart </span>`;
+                }
+                
+            }
+        } catch (error) {
+            console.log("ERROR_getLanguage", error.message);
+        }
+    }
+
+    function AT_prop17Tracking(experienceName, msg) {
+        try {
+            if (window?.adobeTargetExp && adobeTargetExp?.length > 0)
+                adobeTargetExp = adobeTargetExp + "," + experienceName + msg;
+            else
+                window.adobeTargetExp = experienceName + msg;
+        } catch (error) {
+            console.log("ERROR_AT_prop17Tracking", error.message);
+        }
+    }
+
+    async function q25334AddSFToSubseries(recName) {
+        try {
+            $('body').addClass(recName);
+            let pIds = AT_getMeta().pIds;
+            if (!pIds || pIds.includes("USERDATA: NULL")) {
+                pIds = AT_getMeta().pId;
+            }
+            const data = await q25334getAllCounts(pIds);
+            const results = Q25334MapResults(data);
+
+            if (recName == "Q25334ExpA") {
+                if (q25334ExpCalled === false && results.totalOneWeekCartAddition) {
+                    AT_prop17Tracking(recName, "_Loaded");
+                }
+                if ((!$(".q25334SVC.Subseries").length) && results.totalOneWeekCartAddition) {
+                    $(".hero-container .card-rating-container").after("<span class='q25334SVC Subseries'><span class='icon'></span> &nbsp; " + q25334GetCopy(results.totalOneWeekCartAddition) + "</span>");
+                }
+            }
+            else if (recName == "Q25334ExpB") {
+                if (q25334ExpCalled === false && results.totalOneWeekCartAddition) {
+                    AT_prop17Tracking(recName, "_Loaded");
+                }
+                if ((!$(".q25334SVC.Subseries").length) && results.totalOneWeekCartAddition) {
+                    $(".hero-container .card-rating-container").after("<span class='q25334SVC Subseries Q25334ExpAIcon'><span class='icon'></span> &nbsp; " + q25334GetCopy2(results.totalOneWeekCartAddition) + "</span>");
+                    $(".single_model_PDP_container .cta_btns .style-auto-gaming").off().on("click", function (h) {
+                        h.preventDefault();
+                        h.stopImmediatePropagation();
+                        AT_ClickTracking("Q25334", "${campaign.recipe.name}", "SKU Add To Cart CTA Clicked")
+                    })
+                }
+            }
+        } catch (error) {
+            console.log("ERROR_q25334AddSFToSubseries", error.message);
+        }
+    }
+    function q25334AdjustSpace() {
+        try {
+            const sectionContainer = $(".product_list>ul");
+            $(sectionContainer).each((i) => {
+                const listContainer = sectionContainer[i];
+                let flag = false;
+                const items = $(listContainer).find(".q25334SVC");
+                $(items).each((i) => {
+                    const item = items[i];
+                    if ($(item).css('visibility') === "visible") {
+                        flag = true;
+                    }
+                });
+                if (flag === false) {
+                    $(items).remove();
+                }
+            });
+        }
+        catch (error) {
+            console.log("Error_q25334AdjustSpace", error.message)
+        }
+    }
+    async function q25334AddSFToDLP(recName, isMob) {
+        try {
+            $('body').addClass(recName);
+            const items = isMob ? $(".product_list>div.product_item:not(.sp-done)") : $(".product_list>ul>li.product_item:not(.sp-done)");
+            let itemProductIds = "";
+            items.each((i) => {
+                const item = items[i];
+                itemProductIds = itemProductIds + "," + $(item).attr('data-product-code');
+            });
+            const data = await q25334getAllCounts(itemProductIds);
+            results = Q25334MapResults(data, recName);
+
+            Object.keys(results.data).forEach((index) => {
+                const totalOneWeekCartAddition = results.data[index]['totalOneWeekCartAddition'];
+                if (q25334ExpCalled === false && totalOneWeekCartAddition) {
+                    AT_prop17Tracking(recName, "_Loaded");
+                }
+                if (isMob) {
+                    $(".product_list>div.product_item[data-product-code='" + index + "'] .q25334SVC").remove();
+                    $(".product_list>div.product_item[data-product-code='" + index + "'] .product_title").after(`
+                    <span class='q25334SVC' style="visibility:`+ (totalOneWeekCartAddition ? 'visible' : 'hidden') + `"><span class='icon'></span>` + q25334GetCopy(totalOneWeekCartAddition) + `</span>`);
+                    $(".product_list>div.product_item[data-product-code='" + index + "']").addClass('sp-done');
+                } else {
+                    $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .q25334SVC").remove();
+                    if (totalOneWeekCartAddition != undefined && totalOneWeekCartAddition != "") {
+                        var multitems = $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .product_title a").html().toLowerCase();
+                        if (multitems.includes("legion") || multitems.includes("loq")) {
+                            $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .pc-image-align-content").after("<span class='q25334SVC Subseries Q25334ExpAIcon'><span class='icon'></span> &nbsp; " + q25334GetCopy2(totalOneWeekCartAddition) + "</span>");
+                            $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .pc-cta_container").off().on("click", function (h) {
+                                h.preventDefault();
+                                h.stopImmediatePropagation();
+                            });
+                        }
+                        else {
+                            $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .pc-image-align-content").after("<span class='q25334SVC Subseries Q25334ExpAIconHide'><span class='icon'></span> &nbsp;</span>");
+                        }
+                    }
+                    else {
+                        $(".product_list>ul>li.product_item[data-product-code='" + index + "'] .pc-image-align-content").after("<span class='q25334SVC Subseries Q25334ExpAIconHide'><span class='icon'></span> &nbsp;</span>");
+                    }
+                    $(".product_list>ul>li.product_item[data-product-code='" + index + "']").addClass('sp-done');
+
+                }
+            });
+            Q25334_equalColumnHeights(".q25334SVC");
+        }
+        catch (error) {
+            console.log("UEXP-25334 Error : " + error);
+        }
+    }
+
+    let Q25334ExpCalled = false;
+    async function q25334LoadExp(recName) {
+        try {
+            let results;
+            let Q25334Data;
+            if (!Q25334Data) {
+                const productcodeimpressions = $('[data-widget-mode="price-stack-with-logo-left-large"]').attr('data-widget-item-sku');
+                const data = await Q25334CartGetAllCounts(productcodeimpressions);
+                results = Q25334MapResults(data, recName);
+                results = data;
+            } else {
+                results = Q25334Data;
+            }
+
+            if (results && results.length > 0) {
+                for (let i = 0; i < results.length; i++) {
+                    const result = results[i];
+                    const pId = result['dynamoid'].split(':');
+                    const shippingContainer = $("span:contains(" + pId[0] + ")").parents('.productcart').find('.shipping').first();
+                    const mapResult = Q25334MapResults([result]);
+                    var gamingvars = $("span:contains(" + pId[0] + ")").parents('.productcart').find('.urlFlash h3').html().toLowerCase();
+                    if (gamingvars.includes("legion") || gamingvars.includes("loq")) {
+                        if (i === 0 && Q25334ExpCalled === false && mapResult.totalOneWeekCartAddition) {
+                            AT_ClickTracking("Q25334", "${campaign.recipe.name}" + ":Social Proofing:Fired");
+                            Q25334ExpCalled = true;
+                        }
+                        if (!$(".Q25334SubseriesViewingCount." + pId[0]).length && mapResult.totalOneWeekCartAddition) {
+                            $(shippingContainer).before("<span class='Q25334SubseriesViewingCount " + pId[0] + "'><span class='icon'></span>" + q25334GetCopy(mapResult.totalOneWeekCartAddition) + "</span>");
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("ERROR_" + recName, error.message);
+        }
+    }
+
+    function Q25334_equalColumnHeights(elemCollection, removeStyle) {
+        try {
+            var maxElemHeight;
+            if (removeStyle) {
+                elemCollection.css("height", "");
+            }
+            maxElemHeight = Q25334_returnMaxHeight(elemCollection);
+            elemCollection.css("height", maxElemHeight);
+        } catch (error) {
+            console.log("ERROR_in_SubseriesRecs_", error.message);
+        }
+    }
+    function Q25334_returnMaxHeight(elem) {
+        try {
+            var thisHeight3, maxHeight3 = null;
+            elem.each(function (index) {
+                var i = index
+                thisHeight3 = $(elem).eq(i).outerHeight(true);
+                if (thisHeight3 > maxHeight3) {
+                    maxHeight3 = thisHeight3;
+                }
+            });
+            return maxHeight3;
+        } catch (error) {
+            console.log("ERROR_in_SubseriesRecs_", error.message);
+        }
+    }
+
+    try {
+        const recName = '${campaign.recipe.name}';
+        document.addEventListener("Q25334PElemFound", function (event) {
+            q25334AddSFToSubseries(recName);
+        });
+
+        document.addEventListener("Q25334SubseriesElemFound", function (event) {
+            q25334DlpNSubseriesCtaTracking();
+        });
+
+        document.addEventListener("Q25334PItemFound", function (event) {
+            if (window.location.pathname.indexOf('/len1') > 0) {
+                $('body').addClass('${campaign.recipe.name}' + '-subseries');
+            }
+            if (window.location.pathname.indexOf("/d/") > 0) {
+                q25334AddSFToDLP(recName, false);
+                q25334DlpNSubseriesCtaTracking();
+                q25334AdjustSpace();
+            }
+        });
+        document.addEventListener("Q25334ProductsFound", (event) => {
+            if (window.location.pathname.indexOf("/d/deals/") > 0) {
+                $('body').addClass('${campaign.recipe.name}' + '-deals');
+            }
+            $('body').addClass('${campaign.recipe.name}');
+            q25334LoadExp('${campaign.recipe.name}');
+        });
+
+        AT_EW.watch("#productList .productcart", true, "Q25334ProductsFound");
+        AT_EW.watch(".hero-container .card-rating-container", false, "Q25334PElemFound"); //Page Subseries  
+        AT_EW.watch(".mtm,.cto", true, "Q25334SubseriesElemFound");//Add CTA Tracking
+        AT_EW.watch(".product_list ul li.product_item .pc-card_product_image", true, "Q25334PItemFound");//DLP
+    } catch (error) {
+        console.log("ERROR_EW", error.message);
+    }
+
+    //# sourceURL=${campaign.recipe.name}.js
+</script>
